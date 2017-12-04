@@ -1,0 +1,25 @@
+apis:
+  - name: $KONG_API_NAME
+    attributes:
+      request_host: $API_VIRTUAL_HOST
+      upstream_url: "http://$API_HOST:$API_PORT"
+    plugins:
+      - name: jwt
+        attributes:
+          config:
+            claims_to_verify:
+              - exp
+      - name: ssl
+        attributes:
+          config:
+            key: "$KONG_KEY"
+            cert: "$KONG_CERT"
+consumers:
+  - username: test
+    custom_id: test
+    credentials:
+      - name: jwt
+        attributes:
+          key: dongerino
+          secret: $KONG_SECRET_TEST
+          

@@ -9,7 +9,7 @@ import (
 func NewHandler(svc Servicer) http.Handler {
 	r := mux.NewRouter()
 
-	r.Handle("/surgeon/", MakeGetSurgeonHandler(svc)).Methods("POST")
+	r.Handle("/surgeon/{id}", MakeGetSurgeonHandler(svc)).Methods("GET")
 
 	return r
 }

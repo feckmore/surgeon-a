@@ -3,22 +3,25 @@ package surgeon
 import (
 	"context"
 	"encoding/json"
-	"log"
 	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 // TRANSPORTS ********
 // decodeGetSurgeonRequest exposes our service to the world (in this case) via JSON over HTTP
 func decodeGetSurgeonRequest(_ context.Context, r *http.Request) (interface{}, error) {
-	log.Println("decodeGetSurgeonRequest")
-	var request getSurgeonRequest
-	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+	vars := mux.Vars(r)
+	id, err := strconv.Atoi(vars["id"])
+	if err != nil {
 		return nil, err
 	}
+	request := getSurgeonRequest{id}
+
 	return request, nil
 }
 
 func encodeGetSurgeonResponse(_ context.Context, w http.ResponseWriter, response interface{}) error {
-	log.Println("encodeGetSurgeonResponse")
 	return json.NewEncoder(w).Encode(response)
 }

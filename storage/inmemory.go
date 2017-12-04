@@ -12,7 +12,7 @@ type surgeonInMemoryRepo struct {
 	surgeons map[surgeon.ID]*surgeon.Surgeon
 }
 
-// NewSurgeonInMemoryRepository would exist inside of each repo that implemented Repositor interface
+// NewSurgeonInMemoryRepository returns object that implements the Repositor interface
 func NewSurgeonInMemoryRepository() surgeon.Repositor {
 	return &surgeonInMemoryRepo{
 		// surgeons: make(map[surgeon.ID]*surgeon.Surgeon),

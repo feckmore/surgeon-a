@@ -33,7 +33,7 @@ func makeGetSurgeonEndpoint(svc Servicer) endpoint.Endpoint {
 		log.Println("getSurgeonHandler: request.(getSurgeonRequest)", ctx.Err(), request)
 		req, ok := request.(getSurgeonRequest)
 		if !ok {
-			panic("not ok")
+			panic("invalid request")
 		}
 		log.Println("getSurgeonHandler: send to service", ID(req.ID))
 		surgeon, err := svc.GetSurgeonByID(ctx, ID(req.ID))

@@ -38,10 +38,10 @@ func NewSurgeonService(repo Repositor) Servicer {
 }
 
 // GetSurgeonByID returns a surgeon.
-func (us surgeonService) GetSurgeonByID(ctx context.Context, id ID) (*Surgeon, error) {
+func (svc *surgeonService) GetSurgeonByID(ctx context.Context, id ID) (*Surgeon, error) {
 	log.Println("surgeonService.GetSurgeonByID:", id)
 
-	return us.surgeons.FindByID(id)
+	return svc.surgeons.FindByID(id)
 }
 
 // ErrUnknown is used when a surgeon could not be found.

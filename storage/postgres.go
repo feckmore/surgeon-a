@@ -13,7 +13,7 @@ const (
 	port     = 5432
 	username = "dschultz"
 	password = ""
-	dbname   = "surgeons"
+	dbname   = "surgeon"
 )
 
 var db *sql.DB
@@ -23,7 +23,7 @@ type surgeonDBRepo struct {
 	db *sql.DB
 }
 
-// NewSurgeonDBRepository would exist inside of each repo that implemented Repositor interface
+// NewSurgeonDBRepository returns object that implements the Repositor interface
 func NewSurgeonDBRepository() surgeon.Repositor {
 	log.Println("NewSurgeonRepository")
 	repo := new(surgeonDBRepo)

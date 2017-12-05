@@ -14,8 +14,8 @@ import (
 
 func main() {
 	// Select which repo to use
-	//repo := storage.NewSurgeonDBRepository() // uncomment to use database as repo
-	repo := storage.NewSurgeonInMemoryRepository() // uncomment to use temporary in memory object as repo
+	repo := storage.NewSurgeonDBRepository() // uncomment to use database as repo
+	// repo := storage.NewSurgeonInMemoryRepository() // uncomment to use temporary in memory object as repo
 	defer repo.Close()
 
 	// Create the service, passing in the repo
@@ -23,6 +23,6 @@ func main() {
 
 	// Create the handler for the surgeon (note: transport currently decided in endpoint)
 	handler := surgeon.NewHandler(svc)
-
+	log.Println("port:", os.Getenv("GOPORT"))
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("GOPORT")), handler))
 }

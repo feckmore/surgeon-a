@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"git.arthrex.io/dschultz/surgeon-a/api/storage"
 	"git.arthrex.io/dschultz/surgeon-a/api/surgeon"
@@ -22,5 +24,5 @@ func main() {
 	// Create the handler for the surgeon (note: transport currently decided in endpoint)
 	handler := surgeon.NewHandler(svc)
 
-	log.Fatal(http.ListenAndServe(":8080", handler))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", os.Getenv("GOPORT")), handler))
 }

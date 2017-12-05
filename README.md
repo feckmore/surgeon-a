@@ -6,8 +6,10 @@ $ brew install dep
 ```
 
 ### Ensure dependencies are up to date
+>> NOTE: Use the `-vendor-only` flag to keep Dockerfile dependencies
+that are not imported in the Go code.
 ```
-$ dep ensure
+$ dep ensure -vendor-only
 ```
 
 ### Run in container using convox

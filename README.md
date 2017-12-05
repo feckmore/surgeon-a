@@ -8,11 +8,14 @@ $ brew install dep
 ### Ensure dependencies are up to date
 >> NOTE: Use the `-vendor-only` flag to keep Dockerfile dependencies
 that are not imported in the Go code.
+
+From the `api/` directory:
 ```
 $ dep ensure -vendor-only
 ```
 
 ### Run in container using convox
+From the root directory:
 ```
 $ convox start
 ```
@@ -34,6 +37,7 @@ $ curl "http://localhost:8080/surgeon/2"
 ```
 
 ### Add a new dependency to the project
+From the `api/` directory:
 ```
 $ dep ensure -add github.com/foo/bar
 ```

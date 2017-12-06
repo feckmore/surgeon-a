@@ -21,6 +21,9 @@
 #  version = "2.4.0"
 
 
+# required for api/bin/api.sh
+required = ["github.com/ddollar/init", "github.com/cleblanc87/rerun"]
+
 [[constraint]]
   name = "github.com/go-kit/kit"
   version = "0.6.0"
@@ -32,11 +35,3 @@
 [[constraint]]
   branch = "master"
   name = "github.com/lib/pq"
-
-[[constraint]]
-  name = "github.com/ddollar/init"
-  version = "0.1.0"
-
-[[constraint]]
-  branch = "master"
-  name = "github.com/cleblanc87/rerun"

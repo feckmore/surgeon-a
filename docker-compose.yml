@@ -10,7 +10,12 @@ services:
     ports:
       - 5000
     links:
+      - database
       - redis
+  database:
+    image: convox/postgres
+    ports: 
+      - 5432
   redis:
     image: redis
     ports:

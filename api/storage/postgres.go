@@ -14,9 +14,9 @@ import (
 var (
 	host     = "localhost"
 	port     = "5432"
-	username = "dschultz"
+	username = "postgres"
 	password = ""
-	dbname   = "surgeon"
+	dbname   = "postgres"
 )
 
 var db *sql.DB
@@ -42,6 +42,7 @@ func init() {
 		password = pw
 	}
 	dataSourceName = fmt.Sprintf("host=%s port=%s user=%s password=%s sslmode=disable", host, port, username, password)
+	dataSourceName = fmt.Sprintf("postgres://%s:%s@%s/%s?sslmode=disable", username, password, host, dbname)
 }
 
 // NewSurgeonDBRepository returns object that implements the Repositor interface
@@ -165,11 +166,7 @@ func createDatabase() error {
 
 		addSurgeons := `
 		BEGIN;
-		INSERT INTO "public"."surgeons" VALUES ('1', 'James', 'Guerra', '1706 Medical Boulevard', '26.273729', '-81.785632', '2016-10-13 13:40:39.904475', '2016-10-13 13:40:39.904475', 'MD', 'Dr.', 'Naples', 'FL', '34110', 'United States', '239-593-3500', '239-593-9163', 'DrGuerra@CollierSportsMedicine.com', 'http://www.colliersportsmedicine.com', null, 'Collier Sports Medicine & Orthopedic Center, PA', '#201');
-		INSERT INTO "public"."surgeons" VALUES ('2', 'Jon', 'Henry', '2845 Greenbriar Road', '44.47335', '-87.941091', '2016-10-13 13:40:42.14712', '2016-10-13 13:40:42.14712', 'MD', 'Dr.', 'Green Bay', 'WI', '54311', 'United States', '920-288-8000', '920-288-3040', 'jon.henry@aurora.org', 'http://www.aurorahealthcare.org/find-a-location/hospital/aurora-baycare-medical-center', null, 'Aurora Baycare Orthopedic Surgery & Sports Medicine', '');
-		INSERT INTO "public"."surgeons" VALUES ('3', 'Bruce', 'Van Dommelen', '2920 Superior Avenue', '43.76219', '-87.745568', '2016-10-13 13:40:44.116854', '2016-10-13 13:40:44.116854', 'MD', 'Dr.', 'Sheboygan', 'WI', '53081', 'United States', '920-458-3791', '', 'brucevd@charter.net', 'http://www.sheboyganorthopaedics.com', null, 'Sheboygan Orthopedic Associates', '');
-		INSERT INTO "public"."surgeons" VALUES ('4', 'Bob', 'McCormack', '65 Richmond St.', '49.217418', '-122.896863', '2016-10-13 13:40:46.099001', '2016-10-13 13:40:46.099001', 'MD', 'Dr.', 'New Westminster', '', 'V3L 5P5', 'Canada', '604-526-7885', '', 'mccormack@olympic.ca', '', null, '', 'Suite 102');
-		INSERT INTO "public"."surgeons" VALUES ('5', 'Brian', 'Galinat', '1941 Limestone Road', '39.720175', '-75.65269', '2016-10-13 13:40:47.61766', '2016-10-13 13:40:47.61766', 'MD', 'Dr.', 'Wilmington', 'DE', '19808', 'United States', '', '', 'bgalinat@gmail.com', '', null, '', '');
+		INSERT INTO "public"."surgeons" VALUES ('1', 'Dilbert', 'Adam', '123 Main St.', '26.273729', '-81.785632', '2016-10-13 13:40:39.904475', '2016-10-13 13:40:39.904475', 'MD', 'Dr.', 'Naples', 'FL', '34110', 'United States', '239-555-5555', '239-555-5555', 'dilbert@adams.com', 'http://www.dilbert.com', null, 'Dilbert', '');
 		COMMIT;
 		`
 		result, err = db.Exec(addSurgeons)

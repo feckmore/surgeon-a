@@ -5,18 +5,23 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 
-	"git.arthrex.io/dschultz/surgeon-a/api/storage"
-	"git.arthrex.io/dschultz/surgeon-a/api/surgeon"
+	"github.com/feckmore/surgeon-a/api/storage"
+	"github.com/feckmore/surgeon-a/api/surgeon"
 
 	_ "github.com/lib/pq" // required for init of postgres database
 )
 
 func main() {
-	// Select which repo to use
-	repo := storage.NewSurgeonDBRepository() // uncomment to use database as repo
-	//repo := storage.NewSurgeonInMemoryRepository() // uncomment to use temporary in memory object as repo
+	devEnv, _ := strconv.ParseBool(os.Getenv("DEVELOPMENT")) // try pull all env vars in main
+	// // Select which repo to use
+	// //repo := storage.NewSurgeonInMemoryRepository() // uncomment to use temporary in memory object as repo
+	repo, err := storage.NewSurgeonDBRepository(os.Getenv("DATABASE_SCHEME"), os.Getenv("DATABASE_HOST"), os.Getenv("DATABASE_PORT"), os.Getenv("DATABASE_NAME"), os.Getenv("DATABASE_USERNAME"), os.Getenv("DATABASE_PASSWORD"), os.Getenv("CREATE_DATABASE_NAME"), devEnv)
 	defer repo.Close()
+	if err != nil {
+		//TODO
+	}
 
 	// Create the service, passing in the repo
 	svc := surgeon.NewSurgeonService(repo)

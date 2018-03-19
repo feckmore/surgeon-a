@@ -3,7 +3,7 @@ package storage
 import (
 	"sync"
 
-	"git.arthrex.io/dschultz/surgeon-a/api/surgeon"
+	"github.com/feckmore/surgeon-a/api/surgeon"
 )
 
 // surgeonInMemoryRepo satisfies the Repositor interface

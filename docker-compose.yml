@@ -4,6 +4,7 @@ services:
   api:
     build: ./api
     environment:
+      - CREATE_DATABASE_NAME
       - DEVELOPMENT=true
       - GOPORT=5000
       - REDIS_CACHE_DURATION=3600
